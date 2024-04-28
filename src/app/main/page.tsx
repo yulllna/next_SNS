@@ -10,6 +10,7 @@ const MainPage = () => {
             </div>
             <div className='w-1/2 mx-auto'>
                 <FeedCard />
+                <FeedCard />
             </div>
         </>
     );

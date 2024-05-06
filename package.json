@@ -9,13 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^6.17.0",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.40.0",
     "@types/react-icons": "^3.0.0",
     "next": "14.2.2",
     "next-auth": "^4.24.7",
+    "next-sanity": "^7.1.4",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.1.0",
-    "react-multi-carousel": "^2.8.5"
+    "react-multi-carousel": "^2.8.5",
+    "sanity": "^3.40.0",
+    "styled-components": "^6.1.9"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,27 +1,57 @@
+'use client'
 import React from 'react';
-import { MdHome } from "react-icons/md";
-import { IoSearch } from "react-icons/io5";
-import { CiSquarePlus } from "react-icons/ci";
 import Profile from './Profile'
+import Link from 'next/link';
+import HomeIcon from './ui/HomeIcon';
+import HomeFillIcon from './ui/HomeFillIcon'
+import SearchIcon from './ui/SearchIcon'
+import SearchFillIcon from './ui/SearchFillIcon'
+import NewIcon from './ui/NewIcon'
+import NewFillIcon from './ui/NewFillIcon'
+import ColorButton from './ui/ColorButton';
+import { usePathname } from 'next/navigation';
+import { useSession, signIn, signOut } from "next-auth/react"
+
+const menu = [
+    {
+        href: '/',
+        icon: <HomeIcon />,
+        clickedIcon: <HomeFillIcon />
+    },
+    {
+        href: '/search',
+        icon: <SearchIcon />,
+        clickedIcon: <SearchFillIcon />
+    },
+    {
+        href: '/new',
+        icon: <NewIcon />,
+        clickedIcon: <NewFillIcon />
+    },
+]
 
 const Header = () => {
-    const ICON_STYLE = 'w-6 h-6'
+    const pathName = usePathname();
+    const { data: session } = useSession()
+
     return (
         <header className='flex items-center justify-between gap-x-4 px-4 py-2 border border-slate-100'>
-            <span className='font-bold text-xl'>Instantgram</span>
+            <Link href='/'>
+                <span className='font-bold text-xl'>Instantgram</span>
+            </Link>
             <div className='flex items-center justify-between gap-2'>
-                <MdHome className={ICON_STYLE} />
-                <IoSearch className={ICON_STYLE} />
-                <CiSquarePlus className={ICON_STYLE} />
+                {
+                    menu.map(item => <div key={item.href}>
+                        <Link href={item.href}>
+                            {pathName === item.href ? item.clickedIcon : item.icon}
+                        </Link>
+                    </div>)
+                }
                 <Profile />
-                <div className='bg-[linear-gradient(
-                    to right,#833ab4,#fd1d1d,#fcb045
-                    )] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] rounded-md inline-block p-0.5'
-                >
-                    <div className='bg-white rounded-md'>
-                        <span className='text-xs px-1'>Sign in</span>
-                    </div>
-                </div>
+                {
+                    session ? <ColorButton text='Sign out' onClick={() => signOut()} /> :
+                    <ColorButton text='Sign in' onClick={() => signIn()} />
+                }
             </div>
         </header>
     );

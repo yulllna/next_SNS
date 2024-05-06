@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from '@/components/Header'
 import { SessionProvider } from "next-auth/react"
+import AuthContext from "@/context/AuthContext";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -20,11 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={openSans.className}>
-        <Header />
-        {/* <SessionProvider session={session}> */}
-          {children}
-          {/* <Component {...pageProps} /> */}
-      {/* </SessionProvider> */}
+        <AuthContext>
+          <Header />
+          <main>{children}</main>
+        </AuthContext>
       </body>
     </html>
   );

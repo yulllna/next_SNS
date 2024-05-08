@@ -3,9 +3,10 @@ import React from 'react';
 
 type Props = {
     userName?: string;
+    image?: string | null;
 }
 
-const Profile = ({userName}: Props) => {
+const Profile = ({userName, image}: Props) => {
     return (
         <div className='flex flex-col items-center justify-center'>
             <div className='bg-[linear-gradient(
@@ -13,7 +14,7 @@ const Profile = ({userName}: Props) => {
             )] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] w-[32px] h-[32px] overflow-hidden rounded-full flex items-center justify-center'
         >
                 <div className='rounded-full w-[30px] h-[30px] border border-white'>
-                    <img src='https://source.unsplash.com/random/?cat' alt={'프로필사진'} className='rounded-full object-cover w-full h-full ' />
+                    <img src={image ?? ''} alt={'프로필사진'} className='rounded-full object-cover w-full h-full' referrerPolicy='no-referrer' />
                 </div>
             </div>
             {

@@ -34,6 +34,8 @@ const Header = () => {
     const pathName = usePathname();
     const { data: session } = useSession()
 
+    const user = session?.user;
+
     return (
         <header className='flex items-center justify-between gap-x-4 px-4 py-2 border border-slate-100'>
             <Link href='/'>
@@ -47,7 +49,11 @@ const Header = () => {
                         </Link>
                     </div>)
                 }
-                <Profile />
+                {user && 
+                    <Link href={`/user/${user.username}`}>
+                        <Profile image={user.image} />
+                    </Link>
+                }
                 {
                     session ? <ColorButton text='Sign out' onClick={() => signOut()} /> :
                     <ColorButton text='Sign in' onClick={() => signIn()} />

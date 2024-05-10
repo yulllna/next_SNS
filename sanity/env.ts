@@ -13,6 +13,8 @@ export const projectId = assertValue(
 
 export const useCdn = false
 
+export const token = process.env.SANITY_SECRET_TOKEN;
+
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
     throw new Error(errorMessage)

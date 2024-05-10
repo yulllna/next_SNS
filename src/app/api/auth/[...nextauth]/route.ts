@@ -1,5 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { addUser } from "@/service/user";
+
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -8,6 +10,19 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user: { id, name, image, email } }) {
+      if(!email) {
+        return false;
+      }
+      addUser({
+        id,
+        name: name || '',
+        image,
+        email,
+        userName: email?.split('@')[0] || ''
+      });
+      return true
+    },
     async session({ session }) {
       console.log(session)
       // Send properties to the client, like an access_token and user id from a provider.

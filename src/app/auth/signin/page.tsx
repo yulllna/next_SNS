@@ -1,6 +1,7 @@
 import { getProviders, signIn } from "next-auth/react"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { redirect } from 'next/navigation';
 import Signin from "@/components/Signin"
 
 type Props = {
@@ -13,7 +14,7 @@ export default async function SignIn({searchParams: { callbackUrl }}: Props) {
   const session = await getServerSession(authOptions)
 
   if (session) {
-    return { redirect: { destination: "/" } }
+    redirect("/")
   }
 
   const providers = (await getProviders()) ?? {};

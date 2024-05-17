@@ -10,14 +10,16 @@ const Sidebar = ({user: {name, userName, image}}: Props) => {
     return (
         <>
             <div className='flex items-center'>
-                {image && <Profile image={image} />}
-                <p>{userName}</p>
-                <p>{name}</p>
+                {image && <Profile size='normal' image={image} />}
+                <div className='ml-4'>
+                    <p className='font-bold'>{userName}</p>
+                    <p className='text-lg text-neutral-500 leading-4'>{name}</p>
+                </div>
             </div>
-            <p>
+            <p className='text-sm text-neutral-500 mt-8'>
                 About ﹒ Help ﹒ Press ﹒ API ﹒ Jobs ﹒ Privacy ﹒ Terms ﹒ Location ﹒ Language
             </p>
-            <p>
+            <p className='font-bold text-sm mt-8 text-neutral-500'>
                 @CopyRight INSTANTGRAM from METAL
             </p>
         </>

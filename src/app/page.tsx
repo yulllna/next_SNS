@@ -15,7 +15,7 @@ export default async function HomePage() {
   }
   return (
     <section className='w-full max-w-[850px] p-4 flex flex-col md:flex-row'>
-      <div className='w-full basis-1/4'>
+      <div className='w-full basis-3/4'>
         <div className='w-1/2 mx-auto'>
               <ProfileList />
           </div>

@@ -1,6 +1,6 @@
 import FeedCard from '@/components/FeedCard';
 import React from 'react';
-import ProfileList from '../../components/ProfileList';
+import ProfileList from '../../components/followingBar';
 
 const MainPage = () => {
     return (

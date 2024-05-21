@@ -1,6 +1,6 @@
 import FeedCard from '@/components/FeedCard';
 import React from 'react';
-import ProfileList from '@/components/ProfileList';
+import ProfileList from '@/components/followingBar';
 import Sidebar from '@/components/Sidebar';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from './api/auth/[...nextauth]/route';

@@ -2,14 +2,14 @@ import React from 'react';
 // import { Image } from 'next/image';
 
 type Props = {
-    userName?: string;
+    username?: string;
     image?: string | null;
     size: 'small' | 'normal';
     heighlight?: boolean;
 }
 
 const Profile = ({
-    userName, 
+    username, 
     image, 
     size='normal', 
     heighlight=false
@@ -24,7 +24,7 @@ const Profile = ({
                 </div>
             </div>
             {
-                userName && <span className='text-xs'>{userName}</span>
+                username && <span className='text-xs'>{username}</span>
             }
         </div>
     );

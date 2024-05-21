@@ -6,13 +6,13 @@ type Props = {
     user: User;
 }
 
-const Sidebar = ({user: {name, userName, image}}: Props) => {
+const Sidebar = ({user: {name, username, image}}: Props) => {
     return (
         <>
             <div className='flex items-center'>
                 {image && <Profile size='normal' image={image} />}
                 <div className='ml-4'>
-                    <p className='font-bold'>{userName}</p>
+                    <p className='font-bold'>{username}</p>
                     <p className='text-lg text-neutral-500 leading-4'>{name}</p>
                 </div>
             </div>

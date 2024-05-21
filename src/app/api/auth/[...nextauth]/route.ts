@@ -20,12 +20,12 @@ export const authOptions: AuthOptions = {
         name: name || '',
         image,
         email,
-        userName: email?.split('@')[0] || ''
+        username: email?.split('@')[0] || ''
       });
       return true
     },
     async session({ session }) {
-      console.log(session)
+      // console.log(session)
       // Send properties to the client, like an access_token and user id from a provider.
       const user = session?.user;
       if(user) {

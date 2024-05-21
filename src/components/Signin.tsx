@@ -9,7 +9,6 @@ type Props = {
 }
 
 const Signin = ({providers, callbackUrl}: Props) => {
-    console.log(providers)
     return (
         <section className='flex justify-center mt-[30%]'>
             {Object.values(providers).map(({name, id}) => (

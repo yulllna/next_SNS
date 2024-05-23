@@ -14,7 +14,7 @@ export default async function HomePage() {
     redirect("/auth/signin")
   }
   return (
-    <section className='w-full max-w-[850px] p-4 flex flex-col md:flex-row'>
+    <section className='w-full p-4 flex flex-col md:flex-row'>
       <div className='w-full basis-3/4'>
         <div className='w-1/2 mx-auto'>
               <ProfileList />
@@ -24,7 +24,7 @@ export default async function HomePage() {
               <FeedCard />
         </div>
       </div>
-      <div className='basis-1/4'>
+      <div className='basis-1/4 ml-8'>
         <Sidebar user={user} />
       </div>
     </section>

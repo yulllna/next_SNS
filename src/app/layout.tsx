@@ -20,11 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={openSans.className}>
+    <html lang="en" className={openSans.className}>
+      <body className='w-full max-w-screen-xl overflow-auto mx-auto'>
         <AuthContext>
-          <Header />
-          <main>
+          <Header className='sticky top-0 bg-white z-10 border-b' />
+          <main className='w-full flex justify-center bg-neutral-50 min-h-full'>
             <SWRConfigContext>
               {children}
             </SWRConfigContext>

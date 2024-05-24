@@ -37,7 +37,7 @@ const Header = () => {
     const user = session?.user;
 
     return (
-        <header className='flex items-center justify-between gap-x-4 px-4 py-2 border border-slate-100'>
+        <header className='flex items-center justify-between gap-x-4 px-4 py-2 border border-slate-100 sticky top-0 bg-white z-10 border-b'>
             <Link href='/'>
                 <span className='font-bold text-xl'>Instantgram</span>
             </Link>

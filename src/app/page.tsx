@@ -1,10 +1,10 @@
-import FeedCard from '@/components/FeedCard';
 import React from 'react';
 import ProfileList from '@/components/followingBar';
 import Sidebar from '@/components/Sidebar';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from './api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
+import PostList from '@/components/PostList';
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions)
@@ -20,8 +20,7 @@ export default async function HomePage() {
               <ProfileList />
           </div>
           <div className='w-1/2 mx-auto'>
-              <FeedCard />
-              <FeedCard />
+              <PostList />
         </div>
       </div>
       <div className='basis-1/4 ml-8'>

@@ -5,6 +5,7 @@ import React from 'react';
 import { PropagateLoader } from 'react-spinners';
 import useSWR from 'swr';
 import Profile from './Profile'
+import ScrollableBar from './ui/ScrollableBar';
 
 const ProfileList = () => {
     const {data, isLoading: loading, error} = useSWR<DetailUser>('/api/me')
@@ -21,7 +22,7 @@ const ProfileList = () => {
 
     return (
         <>
-            <section className='w-full flex justify-center items-center shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] overflow-x-auto'>
+            <section className='w-full flex justify-center items-center shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] overflow-x-auto mt-2'>
                 {
                     loading ? (
                     <PropagateLoader size={8} color='red' />
@@ -30,15 +31,13 @@ const ProfileList = () => {
                     )
                 }
                 {users && users.length > 0 && 
-                    <ul className='flex gap-3 p-4 shadow-sm mt-2 rounded-md'>
+                    <ScrollableBar>
                         {users.map(({image, username}) => (
-                            <li key={username}>
-                                <Link href={`/user/${username}`}>
-                                    <Profile username={username} image={image} size='normal' heighlight />
-                                </Link>
-                            </li>
+                            <Link href={`/user/${username}`} key={username}>
+                                <Profile username={username} image={image} size='normal' heighlight />
+                            </Link>
                         ))}
-                    </ul>
+                    </ScrollableBar>
                 }
             </section>
         </>

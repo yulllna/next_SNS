@@ -4,7 +4,7 @@ import React from 'react';
 type Props = {
     username?: string;
     image?: string | null;
-    size: 'small' | 'normal';
+    size?: 'small' | 'normal';
     heighlight?: boolean;
 }
 

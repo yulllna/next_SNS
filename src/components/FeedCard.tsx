@@ -26,11 +26,11 @@ const FeedCard = ({ post }: Props) => {
                             alt={`photo by ${username}`} 
                             width={500}
                             height={500} 
-                            className='aspect-square h-full w-full' />
+                            className='aspect-square h-full w-full object-cover' />
                     } 
                 </CustomCarousel>
             </div>
-            <FeedCardTextArea />
+            <FeedCardTextArea createdAt={createdAt} likes={likes} text={text} username={username} />
         </div>
     );
 };

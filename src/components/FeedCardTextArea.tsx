@@ -35,7 +35,7 @@ const FeedCardTextArea = ({ createdAt, likes, text, username }: Props) => {
                             `w-[15%] bg-gray-100 text-cyan-500 p-1 rounded-sm ${true ? 'opacity-50' : ''}`
                             }>Post</button>
                     </form>
-            </div>
+        </div>
     );
 };
 

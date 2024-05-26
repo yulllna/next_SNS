@@ -2,7 +2,7 @@
 import { SimplePost } from '@/model/post';
 import useSWR from 'swr';
 import FeedCard from '@/components/FeedCard';
-// import { GridLoader } from 'react-spinners';
+import { MoonLoader } from 'react-spinners';
 
 const PostList = () => {
     const {data: posts, isLoading: loading} = useSWR<SimplePost[]>('/api/posts')
@@ -11,9 +11,8 @@ const PostList = () => {
 
     return (
         <section>
-            {loading && <div>
-                {/* <GridLoader color='red' />     */}
-                loading...
+            {loading && <div className='flex justify-center items-center mt-32'>
+                <MoonLoader size={50} color='red' />
             </div>}
             {
                 posts && <ul>

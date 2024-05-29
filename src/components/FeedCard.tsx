@@ -1,21 +1,23 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
 import Profile from './Profile';
 import CustomCarousel from './CustomCarousel'
 import { SimplePost } from '@/model/post';
 import Image from 'next/image';
-import { parseDate } from '@/utils/date';
-import { FaHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { FaBookmark } from "react-icons/fa";
-import { FaRegBookmark } from "react-icons/fa";
-import { FaRegFaceSmile } from "react-icons/fa6";
+import CommentForm from './ui/\bCommentForm';
+import ActionBar from './ui/ActionBar';
+import ModalPortal from './ui/ModalPortal';
+import PostModal from './PostModal';
+import PostDetail from './PostDetail';
 
 type Props = {
     post: SimplePost;
+    priority?: boolean;
 }
 
-const FeedCard = ({ post }: Props) => {
+const FeedCard = ({ post, priority = false }: Props) => {
     const {userImage, username, image, createdAt, likes, text} = post;
+    const [openModal, setOpenModal] = useState(false);
 
     return (
         <div className='pt-2 shadow-md mt-2 rounded-md'>
@@ -24,38 +26,27 @@ const FeedCard = ({ post }: Props) => {
                 <span className='font-bold text-xs'>{username}</span>
             </div>
             <div>
-                <CustomCarousel>
+                {/* <CustomCarousel> */}
                     {
+                        // 각 페이지의 LCP(Large Contentful Paint) 요소가 될 이미지에 priority 속성을 추가. 이렇게 하면 next.js가 로드할 이미지의 우선 순위를 지정할 수 있어 성능을 향상 시킬 수 있다.
                           <Image
                             src={image} 
                             alt={`photo by ${username}`} 
                             width={500}
                             height={500} 
-                            className='aspect-square h-full w-full object-cover aspect-square' />
+                            className='aspect-square h-full w-full object-cover' priority onClick={() => setOpenModal(true)} />
                     } 
-                </CustomCarousel>
+                {/* </CustomCarousel> */}
             </div>
-            <div className='text-xs'>
-                <div className='flex justify-between items-center p-1 px-2'>
-                    {true ? <FaHeart className='text-red-600' /> : <FaRegHeart />}
-                    {true ? <FaBookmark /> : <FaRegBookmark />}
-                </div>
-                <p className='font-bold pb-1 px-2'>{`${likes?.length ?? 0} ${likes?.length > 1 ? 'likes' : 'like'}`}</p>
-                <div className='pb-1 px-2'>
-                    <span className='font-bold pr-1'>{username}</span>
-                    <p className='inline'>{text}</p>
-                </div>
-                <p className='font-bold text-cyan-700 pb-2 px-2'>View all 3 comments</p>
-                {/* 모달 열림 */}
-                <p className='text-gray-500 pb-1 px-2'>{parseDate(createdAt)}</p>
-                <form className='border-t flex items-center justify-between p-1'>
-                    <FaRegFaceSmile className='w-[5%]' />
-                    <input type="text" placeholder='Add a comment...' className='w-[75%] border-none outline-none' />
-                    <button className={
-                        `w-[15%] bg-gray-100 text-cyan-500 p-1 rounded-sm ${true ? 'opacity-50' : ''}`
-                        }>Post</button>
-                </form>
-            </div>
+            <ActionBar createdAt={createdAt} likes={likes} text={text} username={username} />
+            <CommentForm />
+            {
+                openModal && <ModalPortal>
+                    <PostModal onClose={() => setOpenModal(false)}>
+                        <PostDetail post={post} />
+                    </PostModal>
+                </ModalPortal>
+            }
         </div>
     );
 };

@@ -8,7 +8,7 @@ import { FaRegBookmark } from "react-icons/fa";
 type Props = {
     createdAt: string;
     likes: string[];
-    text: string;
+    text?: string;
     username: string;
 }
 
@@ -23,7 +23,9 @@ const ActionBar = ({createdAt, likes, text, username}: Props) => {
                 <p className='font-bold pb-1 px-2'>{`${likes?.length ?? 0} ${likes?.length > 1 ? 'likes' : 'like'}`}</p>
                 <div className='pb-1 px-2'>
                     <span className='font-bold pr-1'>{username}</span>
-                    <p className='inline'>{text}</p>
+                    {
+                        text && <p className='inline'>{text}</p>
+                    } 
                 </div>
                 <p className='font-bold text-cyan-700 pb-2 px-2'>View all 3 comments</p>
                 {/* 모달 열림 */}

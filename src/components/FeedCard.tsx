@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-import Profile from './Profile';
-import CustomCarousel from './CustomCarousel'
+// import Profile from './Profile';
+// import CustomCarousel from './CustomCarousel'
 import { SimplePost } from '@/model/post';
 import Image from 'next/image';
 import CommentForm from './ui/\bCommentForm';
@@ -9,6 +9,7 @@ import ActionBar from './ui/ActionBar';
 import ModalPortal from './ui/ModalPortal';
 import PostModal from './PostModal';
 import PostDetail from './PostDetail';
+import PostUserAvatar from './PostUserAvatar';
 
 type Props = {
     post: SimplePost;
@@ -21,10 +22,11 @@ const FeedCard = ({ post, priority = false }: Props) => {
 
     return (
         <div className='pt-2 shadow-md mt-2 rounded-md'>
-            <div className='flex gap-2 items-center pb-2 px-2'>
+            {/* <div className='flex gap-2 items-center pb-2 px-2'>
                 <Profile image={userImage} size='midium' heighlight />
                 <span className='font-bold text-xs'>{username}</span>
-            </div>
+            </div> */}
+            <PostUserAvatar image={userImage} username={username} />
             <div>
                 {/* <CustomCarousel> */}
                     {

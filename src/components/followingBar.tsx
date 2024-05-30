@@ -1,5 +1,5 @@
 'use client';
-import { DetailUser } from '@/model/user';
+import { HomeUser } from '@/model/user';
 import Link from 'next/link';
 import React from 'react';
 import { PropagateLoader } from 'react-spinners';
@@ -8,7 +8,7 @@ import Profile from './Profile'
 import ScrollableBar from './ui/ScrollableBar';
 
 const ProfileList = () => {
-    const {data, isLoading: loading, error} = useSWR<DetailUser>('/api/me')
+    const {data, isLoading: loading, error} = useSWR<HomeUser>('/api/me')
     // 1. 클라이언트 컴포넌트에서 백엔드에게 api/me 사용자의 정보를 얻어옴
     // 이 때 사용자의 아이디를 백엔드에 보낼 필요는 없다. 로그인이 성공적으로 되면 서버에게서부터 로그인이 됐다는 응답헤더에 쿠키를 받아오기 때문에 헤더에 들어있는 토큰 정보를 이용해서 이 사람이 누구인지, 로그인을 했는지에 대한 정보를 받아올 수 있음
     // 2. 백엔드에서는 현재 로그인된 사용자의 세션 정보를 이용해서 

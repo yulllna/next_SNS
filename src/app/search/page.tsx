@@ -1,6 +1,8 @@
+import UserSearch from '../../components/UserSearch';
+
 const SearchPage = () => {
     return (
-        <p>search</p>
+        <UserSearch />
     )
 };
 

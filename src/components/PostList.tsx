@@ -2,7 +2,6 @@
 import { SimplePost } from '@/model/post';
 import useSWR from 'swr';
 import FeedCard from '@/components/FeedCard';
-import { MoonLoader } from 'react-spinners';
 import MoonSpinner from './ui/MoonSpinner';
 
 const PostList = () => {

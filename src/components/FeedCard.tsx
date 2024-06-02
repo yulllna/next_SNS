@@ -36,7 +36,7 @@ const FeedCard = ({ post, priority = false }: Props) => {
                             alt={`photo by ${username}`} 
                             width={500}
                             height={500} 
-                            className='aspect-square h-full w-full object-cover' priority onClick={() => setOpenModal(true)} />
+                            className='aspect-square h-full w-full object-cover' priority={priority} onClick={() => setOpenModal(true)} />
                     } 
                 {/* </CustomCarousel> */}
             </div>

@@ -2,7 +2,9 @@
 const nextConfig = {
     images: {
         domains: [
-            'cdn.sanity.io'
+            'cdn.sanity.io',
+            'lh3.googleusercontent.com',
+            'images.unsplash.com'
         ]
     }
 };

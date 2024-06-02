@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { parseDate } from '@/utils/date';
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
+import ToggleButton from './toggleButton';
+import HeartFillIcon from './icons/HeartFillIcon';
+import HeartIcon from './icons/HeartIcon';
+import BookmarkFillIcon from './icons/BookmarkFillIcon';
+import BookmarkIcon from './icons/BookmarkIcon';
 
 type Props = {
     createdAt: string;
@@ -13,14 +18,25 @@ type Props = {
 }
 
 const ActionBar = ({createdAt, likes, text, username}: Props) => {
-
     let heartAndBookmarkClass = '';
+    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(false);
     
     return (
         <div className='text-xs'>
                 <div className='flex justify-between items-center p-1 px-2'>
-                    {true ? <FaHeart className={`${heartAndBookmarkClass} text-red-600`} /> : <FaRegHeart />}
-                    {true ? <FaBookmark /> : <FaRegBookmark />}
+                    <ToggleButton 
+                        toggled={liked} 
+                        onToggle={setLiked} 
+                        onIcon={<HeartFillIcon />} 
+                        offIcon={<HeartIcon />} 
+                    />
+                    <ToggleButton 
+                        toggled={bookmarked} 
+                        onToggle={setBookmarked} 
+                        onIcon={<BookmarkFillIcon />} 
+                        offIcon={<BookmarkIcon />} 
+                    />
                 </div>
                 <p className='font-bold pb-1 px-2'>{`${likes?.length ?? 0} ${likes?.length > 1 ? 'likes' : 'like'}`}</p>
                 <div className='pb-1 px-2'>

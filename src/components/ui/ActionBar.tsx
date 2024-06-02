@@ -13,11 +13,13 @@ type Props = {
 }
 
 const ActionBar = ({createdAt, likes, text, username}: Props) => {
+
+    let heartAndBookmarkClass = '';
     
     return (
         <div className='text-xs'>
                 <div className='flex justify-between items-center p-1 px-2'>
-                    {true ? <FaHeart className='text-red-600' /> : <FaRegHeart />}
+                    {true ? <FaHeart className={`${heartAndBookmarkClass} text-red-600`} /> : <FaRegHeart />}
                     {true ? <FaBookmark /> : <FaRegBookmark />}
                 </div>
                 <p className='font-bold pb-1 px-2'>{`${likes?.length ?? 0} ${likes?.length > 1 ? 'likes' : 'like'}`}</p>

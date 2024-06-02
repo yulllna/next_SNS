@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import PostUserAvatar from './PostUserAvatar';
 import ActionBar from './ui/ActionBar';
-import CommentForm from './ui/\bCommentForm';
+import CommentForm from './ui/CommentForm';
 import Profile from './Profile';
 
 type Props = {

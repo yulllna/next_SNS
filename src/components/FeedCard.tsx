@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // import CustomCarousel from './CustomCarousel'
 import { SimplePost } from '@/model/post';
 import Image from 'next/image';
-import CommentForm from './ui/\bCommentForm';
+import CommentForm from './ui/CommentForm';
 import ActionBar from './ui/ActionBar';
 import ModalPortal from './ui/ModalPortal';
 import PostModal from './PostModal';

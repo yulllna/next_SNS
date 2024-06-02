@@ -1,8 +1,8 @@
 import React from 'react';
-import ProfileList from '@/components/followingBar';
+import FollowingBar from '@/components/FollowingBar';
 import Sidebar from '@/components/Sidebar';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from './api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/lib/auth'
 import { redirect } from 'next/navigation';
 import PostList from '@/components/PostList';
 
@@ -17,7 +17,7 @@ export default async function HomePage() {
     <section className='w-full p-4 flex flex-col md:flex-row'>
       <div className='w-full basis-3/4'>
         <div className='w-1/2 mx-auto'>
-              <ProfileList />
+              <FollowingBar />
           </div>
           <div className='w-1/2 mx-auto'>
               <PostList />

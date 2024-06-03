@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions, AuthOptions } from "next-auth";
+import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { addUser } from "@/service/user";
 
@@ -24,7 +24,7 @@ export const authOptions: AuthOptions = {
       });
       return true
     },
-    async session({ session }) {
+    async session({ session, token }) {
       // console.log(session)
       // Send properties to the client, like an access_token and user id from a provider.
       const user = session?.user;
@@ -32,11 +32,18 @@ export const authOptions: AuthOptions = {
         session.user = {
           ...user,
           username: user.email?.split('@')[0] || '',
+          id: token.id as string,
+          // id: token.sub - id 가져올 때 이렇게도 구현 가능
         }
       } 
-      
       return session
-    }
+    },
+    async jwt({token, user}) {
+        if(user) {
+          token.id = user.id;
+        }
+        return token;
+    },
   },
   pages: {
     signIn: '/auth/signin',

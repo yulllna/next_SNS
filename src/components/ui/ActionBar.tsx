@@ -1,33 +1,40 @@
 import React, { useState } from 'react';
 import { parseDate } from '@/utils/date';
-import { FaHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { FaBookmark } from "react-icons/fa";
-import { FaRegBookmark } from "react-icons/fa";
 import ToggleButton from './toggleButton';
 import HeartFillIcon from './icons/HeartFillIcon';
 import HeartIcon from './icons/HeartIcon';
 import BookmarkFillIcon from './icons/BookmarkFillIcon';
 import BookmarkIcon from './icons/BookmarkIcon';
+import { SimplePost } from '@/model/post';
+import { useSession } from 'next-auth/react';
+import usePosts from '@/hooks/posts';
 
 type Props = {
-    createdAt: string;
-    likes: string[];
-    text?: string;
-    username: string;
+    post: SimplePost;
 }
 
-const ActionBar = ({createdAt, likes, text, username}: Props) => {
-    let heartAndBookmarkClass = '';
-    const [liked, setLiked] = useState(false);
+const ActionBar = ({post}: Props) => {
+    const { id, createdAt, likes, text, username } = post;
+    const { data: session } = useSession();
+    const user = session?.user;
+    // 외부에서 전달해주는 데이터가 변경될때마다 체크
+    const liked = user ? likes.includes(user.username) : false;
     const [bookmarked, setBookmarked] = useState(false);
+
+    // const { mutate } = useSWRConfig();
+    const { setLike } = usePosts();
+    const handleLike = (like: boolean) => {
+        if(user) {
+            setLike(post, user.username, like);
+        }
+    }
     
     return (
         <div className='text-xs'>
                 <div className='flex justify-between items-center p-1 px-2'>
                     <ToggleButton 
                         toggled={liked} 
-                        onToggle={setLiked} 
+                        onToggle={handleLike} 
                         onIcon={<HeartFillIcon />} 
                         offIcon={<HeartIcon />} 
                     />

@@ -1,13 +1,10 @@
 'use client';
-import { SimplePost } from '@/model/post';
-import useSWR from 'swr';
 import FeedCard from '@/components/FeedCard';
 import MoonSpinner from './ui/MoonSpinner';
+import usePosts from '../hooks/posts';
 
 const PostList = () => {
-    const {data: posts, isLoading: loading} = useSWR<SimplePost[]>('/api/posts')
-    console.log(loading);
-    console.log(posts);
+    const {posts, isLoading: loading} = usePosts();
 
     return (
         <section>

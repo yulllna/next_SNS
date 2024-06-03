@@ -40,7 +40,7 @@ const FeedCard = ({ post, priority = false }: Props) => {
                     } 
                 {/* </CustomCarousel> */}
             </div>
-            <ActionBar createdAt={createdAt} likes={likes} text={text} username={username} />
+            <ActionBar post={post} />
             <CommentForm />
             {
                 openModal && <ModalPortal>

@@ -17,7 +17,7 @@ type Props = {
 }
 
 const FeedCard = ({ post, priority = false }: Props) => {
-    const {userImage, username, image, createdAt, likes, text} = post;
+    const {userImage, username, image, comments, text} = post;
     const [openModal, setOpenModal] = useState(false);
 
     return (
@@ -40,7 +40,13 @@ const FeedCard = ({ post, priority = false }: Props) => {
                     } 
                 {/* </CustomCarousel> */}
             </div>
-            <ActionBar post={post} />
+            <ActionBar post={post}>
+                <p className='px-2'>
+                    <span className='font-bold mr-1'>{username}</span>
+                    {text}
+                </p>
+                {comments > 1 && <button className='font-bold text-cyan-700 pb-2 px-2' onClick={() => setOpenModal(true)}>View all ${comments} comments</button>}
+            </ActionBar>
             <CommentForm />
             {
                 openModal && <ModalPortal>

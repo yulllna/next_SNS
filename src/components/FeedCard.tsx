@@ -10,6 +10,7 @@ import ModalPortal from './ui/ModalPortal';
 import PostModal from './PostModal';
 import PostDetail from './PostDetail';
 import PostUserAvatar from './PostUserAvatar';
+import usePosts from '@/hooks/posts';
 
 type Props = {
     post: SimplePost;
@@ -19,6 +20,12 @@ type Props = {
 const FeedCard = ({ post, priority = false }: Props) => {
     const {userImage, username, image, comments, text} = post;
     const [openModal, setOpenModal] = useState(false);
+    const { postComment } = usePosts();
+
+    const handleCommentPost = (comment: string) => {
+        // 코멘트가 업데이트되며 코멘트 카운트도 함께 변경이 되어야함.
+        postComment(post, comment);
+    };
 
     return (
         <div className='pt-2 shadow-md mt-2 rounded-md'>
@@ -45,9 +52,9 @@ const FeedCard = ({ post, priority = false }: Props) => {
                     <span className='font-bold mr-1'>{username}</span>
                     {text}
                 </p>
-                {comments > 1 && <button className='font-bold text-cyan-700 pb-2 px-2' onClick={() => setOpenModal(true)}>View all ${comments} comments</button>}
+                {comments > 1 && <button className='font-bold text-cyan-700 pb-2 px-2' onClick={() => setOpenModal(true)}>View all {comments} comments</button>}
             </ActionBar>
-            <CommentForm />
+            <CommentForm onPostComment={handleCommentPost} />
             {
                 openModal && <ModalPortal>
                     <PostModal onClose={() => setOpenModal(false)}>

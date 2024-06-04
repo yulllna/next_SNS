@@ -6,7 +6,6 @@ import HeartIcon from './icons/HeartIcon';
 import BookmarkFillIcon from './icons/BookmarkFillIcon';
 import BookmarkIcon from './icons/BookmarkIcon';
 import { SimplePost } from '@/model/post';
-import { useSession } from 'next-auth/react';
 import usePosts from '@/hooks/posts';
 import useMe from '@/hooks/me';
 

@@ -1,10 +1,7 @@
 'use client'
 import React, { useState } from 'react';
-// import Profile from './Profile';
-// import CustomCarousel from './CustomCarousel'
-import { SimplePost } from '@/model/post';
+import { Comment, SimplePost } from '@/model/post';
 import Image from 'next/image';
-import CommentForm from './ui/CommentForm';
 import ActionBar from './ui/ActionBar';
 import ModalPortal from './ui/ModalPortal';
 import PostModal from './PostModal';
@@ -22,7 +19,7 @@ const FeedCard = ({ post, priority = false }: Props) => {
     const [openModal, setOpenModal] = useState(false);
     const { postComment } = usePosts();
 
-    const handleCommentPost = (comment: string) => {
+    const handleCommentPost = (comment: Comment) => {
         // 코멘트가 업데이트되며 코멘트 카운트도 함께 변경이 되어야함.
         postComment(post, comment);
     };
@@ -47,14 +44,13 @@ const FeedCard = ({ post, priority = false }: Props) => {
                     } 
                 {/* </CustomCarousel> */}
             </div>
-            <ActionBar post={post}>
+            <ActionBar post={post} onComment={handleCommentPost}>
                 <p className='px-2'>
                     <span className='font-bold mr-1'>{username}</span>
                     {text}
                 </p>
                 {comments > 1 && <button className='font-bold text-cyan-700 pb-2 px-2' onClick={() => setOpenModal(true)}>View all {comments} comments</button>}
             </ActionBar>
-            <CommentForm onPostComment={handleCommentPost} />
             {
                 openModal && <ModalPortal>
                     <PostModal onClose={() => setOpenModal(false)}>

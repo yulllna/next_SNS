@@ -18,6 +18,7 @@ const UserPage = async ({params: {username}}:Props) => {
     // 사용자의 프로필 이미지와 정보(username, name, 숫자)
     // 하단: 3개의 탭(post, likes, bookmarks)
     const user = await getUser(username);
+    console.log(user)
 
     if(!user) {
         notFound()

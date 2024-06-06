@@ -6,18 +6,18 @@ type Props = {
     username?: string;
     image?: string | null;
     size?: ProflieSize;
-    heighlight?: boolean;
+    highlight?: boolean;
 }
 
 const Profile = ({
     username, 
     image, 
     size='large', 
-    heighlight=false
+    highlight=false
 }: Props) => {
     return (
         <div className={'flex flex-col items-center justify-center'}>
-            <div className={getContainerStyle(size, heighlight)}
+            <div className={getContainerStyle(size, highlight)}
         >
                 <div className={`rounded-full 
                 ${getImageSizeStyle(size).image} border-white`}>
@@ -31,11 +31,11 @@ const Profile = ({
     );
 };
 
-function getContainerStyle(size: ProflieSize, heighlight: boolean): string {
+function getContainerStyle(size: ProflieSize, highlight: boolean): string {
     const baseStyle = 'overflow-hidden rounded-full flex items-center justify-center'
-    const heighlightStyle = heighlight ? 'bg-[linear-gradient(to right,#833ab4,#fd1d1d,#fcb045)] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]' : '';
+    const highlightStyle = highlight ? 'bg-[linear-gradient(to right,#833ab4,#fd1d1d,#fcb045)] bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045]' : '';
     const { container } = getImageSizeStyle(size);
-    return `${baseStyle} ${heighlightStyle} ${container}`;
+    return `${baseStyle} ${highlightStyle} ${container}`;
 }
 
 type ImageSizeStyle = {

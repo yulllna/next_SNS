@@ -9,7 +9,7 @@ type Props = {
 const PostUserAvatar = ({image, username}: Props) => {
     return (
         <div className='flex gap-2 items-center pb-2 px-2'>
-            <Profile image={image} size='midium' heighlight />
+            <Profile image={image} size='midium' highlight />
             <span className='font-bold text-xs'>{username}</span>
         </div>
     );

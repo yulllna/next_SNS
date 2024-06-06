@@ -25,7 +25,6 @@ export const authOptions: AuthOptions = {
       return true
     },
     async session({ session, token }) {
-      // console.log(session)
       // Send properties to the client, like an access_token and user id from a provider.
       const user = session?.user;
       if(user) {

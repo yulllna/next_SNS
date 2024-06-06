@@ -51,7 +51,7 @@ const Header = () => {
                 }
                 {user && 
                     <Link href={`/user/${user.username}`}>
-                        <Profile size='small' heighlight image={user.image} />
+                        <Profile size='small' highlight image={user.image} />
                     </Link>
                 }
                 {

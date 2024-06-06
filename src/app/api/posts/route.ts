@@ -9,8 +9,6 @@ export async function GET() {
     if(!user) {
         return new Response('Authentication error', {status: 401});
     }
-    console.log('!!!')
-    console.log(user)
     return getFollowingPostsOf(user.username) //
     .then((data) => NextResponse.json(data));
 }

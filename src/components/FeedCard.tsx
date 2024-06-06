@@ -27,7 +27,7 @@ const FeedCard = ({ post, priority = false }: Props) => {
     return (
         <div className='pt-2 shadow-md mt-2 rounded-md'>
             {/* <div className='flex gap-2 items-center pb-2 px-2'>
-                <Profile image={userImage} size='midium' heighlight />
+                <Profile image={userImage} size='midium' highlight />
                 <span className='font-bold text-xs'>{username}</span>
             </div> */}
             <PostUserAvatar image={userImage} username={username} />

@@ -33,7 +33,7 @@ const FollowingBar = () => {
                     <ScrollableBar>
                         {users.map(({image, username}) => (
                             <Link href={`/user/${username}`} key={username}>
-                                <Profile username={username} image={image} size='large' heighlight />
+                                <Profile username={username} image={image} size='large' highlight />
                             </Link>
                         ))}
                     </ScrollableBar>

@@ -24,7 +24,7 @@ const PostDetail = ({post}: Props) => {
                 <PostUserAvatar image={userImage} username={username} />
                 <ul className='border-t border-gray-200 h-full p-4 mb-1'>
                     {comments && comments.map(({image, username: commentUsername, comment}, index) => <li key={index} className='flex items-center mb-1'>
-                        <Profile image={image} size='small' heighlight={commentUsername === username}/>
+                        <Profile image={image} size='small' highlight={commentUsername === username}/>
                         <div className='ml-2'>
                             <span className='font-bold mr-1'>
                                 {commentUsername}

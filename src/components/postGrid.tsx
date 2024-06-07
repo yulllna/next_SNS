@@ -3,18 +3,10 @@ import { MoonLoader } from 'react-spinners';
 import useSWR from 'swr';
 import { SimplePost } from '@/model/post';
 import PostGridCard from './PostGridCard';
+import usePosts from '@/hooks/posts';
 
-type Props = {
-    username: string;
-    query: string;
-}
-
-const PostGrid = ({ username, query }: Props) => {
-    const {
-        data: posts, 
-        isLoading, 
-        error
-    } = useSWR<SimplePost[]>(`/api/users/${username}/${query}`);
+const PostGrid = () => {
+    const {posts, isLoading} = usePosts()
 
     return (
         <div className='w-full text-center'>

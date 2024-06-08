@@ -23,5 +23,5 @@
     "target": "ES2016"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/schemaTypes/post.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "sanity-studio"]
 }

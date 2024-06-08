@@ -1,7 +1,5 @@
 import React from 'react';
 import { MoonLoader } from 'react-spinners';
-import useSWR from 'swr';
-import { SimplePost } from '@/model/post';
 import PostGridCard from './PostGridCard';
 import usePosts from '@/hooks/posts';
 

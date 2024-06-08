@@ -7,9 +7,10 @@ import usePosts from '@/hooks/posts';
 
 const PostGrid = () => {
     const {posts, isLoading} = usePosts()
+    console.log(posts)
 
     return (
-        <div className='w-full text-center'>
+        <div className='w-full flex justify-center'>
             {isLoading && <MoonLoader />}
             <ul className='grid grid-cols-3 gap-4 py-4 px-8'>
                 {posts && posts.map((post, index) => <li key={post.id}>

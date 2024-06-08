@@ -1,4 +1,4 @@
-import { client, urlFor } from '../../sanity/lib/client'
+import { assetsURL, client, urlFor } from '../../sanity/lib/client'
 import { SimplePost } from '@/model/post';
 
 const simplePostProjection = `
@@ -47,37 +47,35 @@ export async function getPost(id: string) {
 }
 
 export async function getPostsOf(username: string) {
-    return client.fetch(
+    return client
+      .fetch(
         `*[_type == "post" && author->username == "${username}"]
-            | order(_createdAt desc) {
-                ${simplePostProjection}
-            }
-        `
-    )
-    .then(mapPosts);
-}
-
-export async function getLikedPostsOf(username: string) {
-    return client.fetch(
-        `*[_type == "post" && "${username}" in Likes[]->username]
-            | order(_createdAt desc) {
-                ${simplePostProjection}
-            }
-        `
-    )
-    .then(mapPosts);
-}
-
-export async function getSavedPostsOf(username: string) {
-    return client.fetch(
+        | order(_createdAt desc){
+          ${simplePostProjection}
+        }`
+      )
+      .then(mapPosts);
+  }
+  export async function getLikedPostsOf(username: string) {
+    return client
+      .fetch(
+        `*[_type == "post" && "${username}" in likes[]->username]
+        | order(_createdAt desc){
+          ${simplePostProjection}
+        }`
+      )
+      .then(mapPosts);
+  }
+  export async function getSavedPostsOf(username: string) {
+    return client
+      .fetch(
         `*[_type == "post" && _id in *[_type=="user" && username=="${username}"].bookmarks[]._ref]
-            | order(_createdAt desc) {
-                ${simplePostProjection}
-            }
-        `
-    )
-    .then(mapPosts);
-}
+        | order(_createdAt desc){
+          ${simplePostProjection}
+        }`
+      )
+      .then(mapPosts);
+  }
 
 function mapPosts(posts: SimplePost[]) {
     return posts.map((post: SimplePost) => ({
@@ -119,4 +117,29 @@ export async function addComment(postId: string, userId: string, comment: string
             }
         ])
         .commit({ autoGenerateArrayKeys: true });
+}
+
+export async function createPost(userId: string, text: string, file: Blob) {
+
+    return fetch(assetsURL, {
+        method: 'POST',
+        headers: {
+            'content-type': file.type,
+            authorization: `Bearer ${process.env.SANITY_SECRET_TOKEN}`
+        },
+        body: file,
+    })
+    .then((res => res.json()))
+    .then(result => {
+        return client.create({
+            _type: 'post',
+            author: {_ref: userId},
+            photo: {asset: {_ref: result.document._id}},
+            comments: [{
+                comment: text,
+                author: {_ref: userId, _type: 'reference'}
+            }],
+            likes: [],
+        }, {autoGenerateArrayKeys: true})
+    })
 }

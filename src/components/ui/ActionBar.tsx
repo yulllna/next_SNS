@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { parseDate } from '@/utils/date';
-import ToggleButton from '@/components/ui/toggleButton';
+import ToggleButton from '@/components/ui/ToggleButton';
 import HeartFillIcon from './icons/HeartFillIcon';
 import HeartIcon from './icons/HeartIcon';
 import BookmarkFillIcon from './icons/BookmarkFillIcon';

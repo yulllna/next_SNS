@@ -1,10 +1,10 @@
 import React from 'react';
-import FollowingBar from '@/components/FollowingBar';
-import Sidebar from '@/components/Sidebar';
+import FollowingBar from '../components/FollowingBar';
+import Sidebar from '../components/Sidebar';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/lib/auth'
+import { authOptions } from '../app/lib/auth'
 import { redirect } from 'next/navigation';
-import PostList from '@/components/PostList';
+import PostList from '../components/PostList';
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions)

@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import PostIcon from './ui/icons/PostIcon';
 import BookmarkIcon from './ui/icons/BookmarkIcon';
 import HeartIcon from './ui/icons/HeartIcon';
-import PostGrid from '@/components/PostGrid';
+import PostGrid from '../components/PostGrid';
 import { cacheKeysContext } from '../context/CacheKeysContext';
 
 type Props = {
